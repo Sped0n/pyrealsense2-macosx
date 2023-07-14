@@ -8,7 +8,7 @@
 # brew install openssl
 
 param (
-    [string]$tag = "v2.51.1",
+    [string]$tag = "v2.50.0",
     [string]$root = "librealsense",
     [string]$libusbPath = "libusb",
     [string]$libusbTag = "v1.0.26",
@@ -56,10 +56,10 @@ $pythonWrapperDir = "wrappers/python"
 # clone
 if ($tag -eq "nightly") {
     Write-Host "using nightly version..."
-    git clone --depth 1 "https://github.com/IntelRealSense/librealsense.git" $root
+    git clone --depth 1 "https://github.com/IntelRealSense/Sped0n.git" $root
 } else {
     Write-Host "using release version..."
-    git clone --depth 1 --branch $tag "https://github.com/IntelRealSense/librealsense.git" $root
+    git clone --depth 1 --branch $tag "https://github.com/Sped0n/librealsense.git" $root
 }
 
 pushd $root
@@ -107,7 +107,7 @@ pushd $pythonWrapperDir
 python find_librs_version.py ../../  pyrealsense2
 
 Replace-AllStringsInFile "name=package_name" "name=`"pyrealsense2-macosx`"" "$root/$pythonWrapperDir/setup.py"
-Replace-AllStringsInFile "https://github.com/IntelRealSense/librealsense" "https://github.com/cansik/pyrealsense2-macosx" "$root/$pythonWrapperDir/setup.py"
+Replace-AllStringsInFile "https://github.com/IntelRealSense/librealsense" "https://github.com/Sped0n/pyrealsense2-macosx" "$root/$pythonWrapperDir/setup.py"
 
 pip install wheel
 python setup.py bdist_wheel --plat-name=macosx_11_0_universal2
